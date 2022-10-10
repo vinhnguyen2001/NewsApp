@@ -1,0 +1,2 @@
+### BUILD PROJECT WITH THIS COMMAND
+mvn clean install
