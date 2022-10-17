@@ -26,7 +26,7 @@
 
 	<dependencies>
 
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -43,6 +43,13 @@
 			<version>${mysql.version}</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
 
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		
+		
 	</dependencies>
 
 	<build>

@@ -21,13 +21,13 @@ public class CategoryEntity extends BaseEntity {
 	
 	
 	@OneToMany(mappedBy="category")
-	private List<NewEntity> news = new ArrayList<>();
+	private List<NewsEntity> news = new ArrayList<>();
 	
-	public List<NewEntity> getNews() {
+	public List<NewsEntity> getNews() {
 		return news;
 	}
 
-	public void setNews(List<NewEntity> news) {
+	public void setNews(List<NewsEntity> news) {
 		this.news = news;
 	}
 
