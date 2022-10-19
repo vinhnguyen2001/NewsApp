@@ -36,7 +36,7 @@ public class NewsAPI{
 	
 	 @DeleteMapping(value="/news")
 	 public void deleteNew(@RequestBody long[] ids) {
-		 
+		 newsService.delete(ids);
 	 }
 	 
 	 

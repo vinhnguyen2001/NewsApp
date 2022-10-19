@@ -6,5 +6,7 @@ public interface INewsService {
 
 	
 	public NewsDTO save(NewsDTO newsDTO);
+	
+	public void delete(long[] ids);
 //	public NewsDTO update(NewsDTO newsDTO);
 }
