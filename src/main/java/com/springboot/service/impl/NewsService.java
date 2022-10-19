@@ -1,6 +1,10 @@
 package com.springboot.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.springboot.converter.NewsConverter;
@@ -51,6 +55,25 @@ public class NewsService implements INewsService {
 			newsRepository.delete(id);
 		}
 		
+	}
+
+	@Override
+	public List<NewsDTO> findAll(Pageable pageable) {
+		List<NewsDTO> results = new ArrayList<>();
+		List<NewsEntity> entities = newsRepository.findAll(pageable).getContent();
+		
+		for(NewsEntity item: entities) {
+			NewsDTO newsDTO = newsConverter.toDTO(item);
+			results.add(newsDTO);
+		}
+		
+		return results;
+	}
+
+	@Override
+	public int totalItem() {
+		
+		return (int) newsRepository.count();
 	}
 
 //	@Override
