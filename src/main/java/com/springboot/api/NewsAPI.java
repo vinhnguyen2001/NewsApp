@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
-import com.springboot.api.output.NewsOutput;
+import com.springboot.api.output.BaseOutput;
 import com.springboot.dto.NewsDTO;
 import com.springboot.service.INewsService;
 
@@ -22,12 +22,12 @@ public class NewsAPI{
 	
 	 // URL and where get requests from the client.
 	 @GetMapping(value="/news")
-     public NewsOutput createNews(@RequestParam("page") int page, 
+     public BaseOutput createNews(@RequestParam("page") int page,
     		 					 @RequestParam("limit") int limit,
     		 					@RequestParam("sort") String sort) {
 		 
 		 System.out.println("sort"+ sort);
-		 NewsOutput result = new NewsOutput();
+		 BaseOutput result = new BaseOutput();
 		 result.setPage(page);
 		 Pageable pageable  = new PageRequest(page - 1, limit,Sort.Direction.DESC, sort);
 		 result.setListResults(newsService.findAll(pageable));

@@ -3,7 +3,7 @@ package com.springboot.api;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.springboot.api.output.NewsOutput;
+import com.springboot.api.output.BaseOutput;
 import com.springboot.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.data.domain.PageRequest;
@@ -29,12 +29,12 @@ public class UserAPI {
     private IUserService userService;
 
     @GetMapping(value="/users")
-    public NewsOutput createNews(@RequestParam("page") int page,
+    public BaseOutput createNews(@RequestParam("page") int page,
                                  @RequestParam("limit") int limit,
                                  @RequestParam("sort") String sort) {
 
 
-        NewsOutput<UserDTO> result = new NewsOutput();
+        BaseOutput<UserDTO> result = new BaseOutput();
         result.setPage(page);
         Pageable pageable  = new PageRequest(page - 1, limit, Sort.Direction.DESC, sort);
         result.setListResults(userService.findAll(pageable));

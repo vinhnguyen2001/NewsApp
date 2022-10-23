@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.springboot.dto.NewsDTO;
 
-public class  NewsOutput<T>{
+public class  BaseOutput<T>{
 
 	
 	private int page;
