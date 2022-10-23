@@ -5,11 +5,10 @@ import com.springboot.entity.UserEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoleDTO {
+public class RoleDTO extends BaseDTO<RoleDTO> {
 
     private String code;
     private String name;
-
 
     public String getCode() {
         return code;

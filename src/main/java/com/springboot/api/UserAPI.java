@@ -46,6 +46,7 @@ public class UserAPI {
 
     @PostMapping(value="/user")
     public UserDTO createUser(@RequestBody UserDTO model) {
+
         return userService.save(model);
     }
 

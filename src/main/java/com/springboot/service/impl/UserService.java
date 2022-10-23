@@ -1,9 +1,7 @@
 package com.springboot.service.impl;
 
 import com.springboot.converter.UserConverter;
-import com.springboot.dto.NewsDTO;
 import com.springboot.dto.UserDTO;
-import com.springboot.entity.NewsEntity;
 import com.springboot.entity.UserEntity;
 import com.springboot.repository.UserRepository;
 import com.springboot.service.IUserService;
