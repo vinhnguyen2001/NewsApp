@@ -32,7 +32,7 @@ public class NewsService implements INewsService {
 	@Override
 	public NewsDTO save(NewsDTO newsDTO) {
 		
-		NewsEntity newsEntity = new NewsEntity();
+		NewsEntity newsEntity;
 		
 		if(newsDTO.getId() != null) {
 			NewsEntity oldNewsEntity = newsRepository.findOne(newsDTO.getId());

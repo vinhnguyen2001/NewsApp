@@ -27,8 +27,8 @@ public class NewsEntity extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name="category_id")
 	private CategoryEntity category;
-	
-	
+
+
 	public CategoryEntity getCategory() {
 		return category;
 	}

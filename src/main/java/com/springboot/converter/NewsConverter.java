@@ -24,7 +24,6 @@ public class NewsConverter {
 		NewsDTO dto = new NewsDTO();
 		
 		if(entity.getId()!=null) {
-		
 			dto.setId(entity.getId());
 		}
 		
@@ -49,5 +48,6 @@ public class NewsConverter {
 		
 		return entity;
 	}
-	
+
+
 }

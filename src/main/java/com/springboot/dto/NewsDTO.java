@@ -1,12 +1,14 @@
 package com.springboot.dto;
 
-public class NewsDTO extends AbstractDTO<NewsDTO> {
+public class NewsDTO extends BaseDTO<NewsDTO> {
 
 	private String title;
 	private String content;
 	private String shortDescription;
 	private String categoryCode;
 	private String thumbnail;
+
+
 	
 	public String getTitle() {
 		return title;

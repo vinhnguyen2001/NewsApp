@@ -5,12 +5,12 @@ import java.util.List;
 
 import com.springboot.dto.NewsDTO;
 
-public class NewsOutput {
+public class  NewsOutput<T>{
 
 	
 	private int page;
 	private int totalPage;
-	private List<NewsDTO> listResults = new ArrayList<>();
+	private List<T> listResults = new ArrayList<>();
 	
 	public int getPage() {
 		return page;
@@ -22,10 +22,10 @@ public class NewsOutput {
 	public int getTotalPage() {
 		return totalPage;
 	}
-	public List<NewsDTO> getListResults() {
+	public List<T> getListResults() {
 		return listResults;
 	}
-	public void setListResults(List<NewsDTO> listResults) {
+	public void setListResults(List<T> listResults) {
 		this.listResults = listResults;
 	}
 	public void setTotalPage(int totalPage) {
