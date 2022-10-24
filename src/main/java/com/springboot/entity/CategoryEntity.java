@@ -19,16 +19,16 @@ public class CategoryEntity extends BaseEntity {
 	private String name;
 
 	
-	
+
 	@OneToMany(mappedBy="category")
-	private List<NewsEntity> news = new ArrayList<>();
-	
-	public List<NewsEntity> getNews() {
-		return news;
+	private List<NewsEntity> listNews = new ArrayList<>();
+
+	public List<NewsEntity> getListNews() {
+		return listNews;
 	}
 
-	public void setNews(List<NewsEntity> news) {
-		this.news = news;
+	public void setListNews(List<NewsEntity> listNews) {
+		this.listNews = listNews;
 	}
 
 	public String getCode() {

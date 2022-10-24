@@ -26,7 +26,18 @@ public class UserEntity extends BaseEntity {
 	@JoinTable(name="user_role", joinColumns = @JoinColumn(name = "user_id"), 
 			   inverseJoinColumns = @JoinColumn(name ="role_id"))
 	private List<RoleEntity> roles = new ArrayList<>();
-	
+
+	public List<CommentEntity> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<CommentEntity> comments) {
+		this.comments = comments;
+	}
+
+	@OneToMany(mappedBy="userId")
+	private List<CommentEntity> comments = new ArrayList<>();
+
 	public List<RoleEntity> getRoles() {
 		return roles;
 	}

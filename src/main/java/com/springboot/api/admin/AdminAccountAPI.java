@@ -17,7 +17,7 @@ import java.util.Map;
 @RestController
 @CrossOrigin
 @RequestMapping("/admin/api/")
-public class AdminAPI {
+public class AdminAccountAPI {
 
     @Autowired
     private IUserService userService;

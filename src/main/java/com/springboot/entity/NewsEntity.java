@@ -1,13 +1,11 @@
 package com.springboot.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name="new")
+@Table(name="news")
 public class NewsEntity extends BaseEntity {
 
 	@Column(name="title")
@@ -22,8 +20,17 @@ public class NewsEntity extends BaseEntity {
 	@Column(name="content")
 	private String content;
 
-	
-	
+	@OneToMany(mappedBy="newsId")
+	private List<CommentEntity> comments = new ArrayList<>();
+
+	public List<CommentEntity> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<CommentEntity> comments) {
+		this.comments = comments;
+	}
+
 	@ManyToOne
 	@JoinColumn(name="category_id")
 	private CategoryEntity category;
