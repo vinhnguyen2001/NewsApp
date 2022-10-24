@@ -1,5 +1,6 @@
 package com.springboot.converter;
 
+import com.springboot.dto.RoleDTO;
 import com.springboot.dto.UserDTO;
 import com.springboot.entity.NewsEntity;
 import com.springboot.entity.RoleEntity;
@@ -34,6 +35,10 @@ public class UserConverter {
         dto.setCreatedDate(entity.getCreatedDate());
         dto.setModifiedBy(entity.getModifiedBy());
         dto.setModifiedDate(entity.getModifiedDate());
+
+        for(RoleEntity elm:entity.getRoles()){
+            dto.getRoles().add(elm.getName());
+        }
         return dto;
     }
 }

@@ -12,13 +12,13 @@ public class UserDTO extends BaseDTO<UserDTO> {
     private String password;
     private int status;
 
-    private List<RoleDTO> roles = new ArrayList<>();
+    private List<String> roles = new ArrayList<>();
 
-    public List<RoleDTO> getRoles() {
+    public List<String> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<RoleDTO> roles) {
+    public void setRoles(List<String> roles) {
         this.roles = roles;
     }
 

@@ -33,13 +33,15 @@ public class RoleService implements IRoleService {
     }
 
     @Override
-    public void addRoleToUser(String username, String rolename) {
+    public void addRoleToUser(String username, String rolename) throws Exception {
 
 
         UserEntity userEntity = userRepo.findUserEntityByUserName(username);
         RoleEntity roleEntity = roleRepo.findRoleEntitiesByName(rolename);
-//        System.out.println("username :="+userEntity.getUserName());
 
+        if(userEntity == null || roleEntity == null){
+            throw new Exception("Invalid");
+        }
         userEntity.getRoles().add(roleEntity);
 
         userRepo.save(userEntity);
