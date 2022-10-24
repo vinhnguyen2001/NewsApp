@@ -7,7 +7,9 @@ mvn clean install
 
 ### Main Features
 + Provide client-side API like [CRUD] API for News, User, Comment, Role, Category
-+ Authentication and authorizations.
++ Authentication and authorization.
++ Hash password with Bcrypt
++ Use JWT for authentication and authorization.
 
 
 ### Example
@@ -16,5 +18,5 @@ mvn clean install
 
 + [GET]: /admin/api/users: get all account but only "ROLE_ADMIN" has permission.
 + [POST]: /api/user: register new account. Everyone has access.
-+ [PUT]:  /api/user: update info of account. Everyone has access.
++ [PUT]:  /api/user: update info of account.Only "ROLE_USER" has permission.
 + [DELETE]: /admin/api/delete: soft-delete. Delete account. Only "ROLE_ADMIN" has permission.
