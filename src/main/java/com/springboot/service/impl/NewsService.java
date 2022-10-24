@@ -3,6 +3,7 @@ package com.springboot.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.springboot.service.IRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,15 @@ public class NewsService implements INewsService {
 	
 	@Autowired
 	private NewsConverter newsConverter;
-	
+
+
+	@Override
+	public NewsDTO getNewsById(Long id) {
+
+		NewsEntity newsEntity = newsRepository.findNewsEntitiesById(id);
+		return newsConverter.toDTO(newsEntity);
+	}
+
 	@Override
 	public NewsDTO save(NewsDTO newsDTO) {
 		
@@ -45,6 +54,8 @@ public class NewsService implements INewsService {
 		CategoryEntity  categoryEntity = categoryRepository.findOneByCode(newsDTO.getCategoryCode());
 		newsEntity.setCategory(categoryEntity);
 		newsEntity = newsRepository.save(newsEntity);
+
+
 		return newsConverter.toDTO(newsEntity);
 	}
 
@@ -71,9 +82,33 @@ public class NewsService implements INewsService {
 	}
 
 	@Override
+	public List<NewsDTO> findNewsByTitle(Pageable pageable, String search) {
+
+		System.out.println("entity news "+ search);
+		List<NewsDTO> results = new ArrayList<>();
+		List<NewsEntity> entities = newsRepository.findNewsEntitiesByShortDescriptionIsContaining(pageable,search);
+
+		System.out.println("entity news "+ entities);
+		for(NewsEntity item: entities) {
+			System.out.print("ID FOR" + item.getId());
+			NewsDTO newsDTO = newsConverter.toDTO(item);
+			results.add(newsDTO);
+		}
+
+
+		return results;
+	}
+
+
+	@Override
 	public int totalItem() {
 		
 		return (int) newsRepository.count();
+	}
+
+	@Override
+	public int totalItemBySearch(String search) {
+		return (int) newsRepository.countNewsEntitiesByShortDescriptionIsContaining(search);
 	}
 
 //	@Override

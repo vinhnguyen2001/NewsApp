@@ -1,30 +1,28 @@
-package com.springboot.api;
-
+package com.springboot.api.admin;
 
 
 import com.springboot.api.output.BaseOutput;
 import com.springboot.dto.UserDTO;
+import com.springboot.service.IRoleService;
+import com.springboot.service.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
-import com.springboot.service.IUserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@CrossOrigin
 @RestController
-@RequestMapping("/api")
-public class UserAPI {
+@CrossOrigin
+@RequestMapping("/admin/api/")
+public class AdminAPI {
 
     @Autowired
     private IUserService userService;
+
+
 
     @GetMapping(value="/users")
     public BaseOutput createNews(@RequestParam("page") int page,
@@ -42,28 +40,24 @@ public class UserAPI {
     }
 
 
-    @PostMapping(value="/user")
-    public UserDTO createUser(@RequestBody UserDTO model) {
-
-        return userService.save(model);
-    }
-
-    @PutMapping(value="/user/{id}")
-    public UserDTO updateUser(@RequestBody UserDTO model, @PathVariable("id") Long id) {
-        model.setId(id);
-        return userService.save(model);
-    }
-
     @DeleteMapping(value="/user")
     public Map<String,String> deleteUser(@RequestBody long[] ids){
+
+
         Map<String, String> tokens = new HashMap<>();
 
-        if( userService.delete(ids) == true) {
-            tokens.put("status", "success");
+        try {
+            if (userService.delete(ids) == true) {
+                tokens.put("success_message", "delete account succeed");
+            } else {
+                tokens.put("error_message", "delete account fail");
+            }
+            return tokens;
         }
-        else{
-            tokens.put("status", "fail");
+        catch(Exception err){
+            tokens.put("error_message", "delete account fail");
+            return tokens;
         }
-        return tokens;
     }
+
 }

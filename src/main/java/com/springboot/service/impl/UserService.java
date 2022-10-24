@@ -4,6 +4,7 @@ import com.springboot.converter.UserConverter;
 import com.springboot.dto.UserDTO;
 import com.springboot.entity.UserEntity;
 import com.springboot.repository.UserRepository;
+import com.springboot.service.IRoleService;
 import com.springboot.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -32,6 +33,8 @@ public class UserService implements IUserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private IRoleService roleService;
     @Override
     public UserDTO save(UserDTO userDTO) {
 
@@ -47,8 +50,17 @@ public class UserService implements IUserService {
         }
 
         userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
+
         userEntity = userRepo.save(userEntity);
-        return userConverter.toDTO(userEntity);
+
+        try {
+          roleService.addRoleToUser(userEntity.getUserName(),"ROLE_USER");
+        } catch (Exception e) {
+
+            throw new RuntimeException(e);
+        }
+
+        return userConverter.toDTO(userRepo.findOne(userEntity.getId()));
 
     }
 
@@ -75,6 +87,17 @@ public class UserService implements IUserService {
         }
 
         return results;
+    }
+
+    @Override
+    public Boolean isExist(String username) {
+
+        UserEntity userEntity = userRepo.findUserEntityByUserName(username);
+
+        if(userEntity != null){
+            return  true;
+        }
+        return false;
     }
 
     @Override

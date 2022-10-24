@@ -1,10 +1,8 @@
 package com.springboot.service;
 
-import com.springboot.dto.NewsDTO;
 import com.springboot.dto.UserDTO;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -17,5 +15,6 @@ public interface IUserService extends UserDetailsService {
 
     public List<UserDTO> findAll(Pageable pageable);
 
+    public Boolean isExist (String username);
     int totalItem();
 }

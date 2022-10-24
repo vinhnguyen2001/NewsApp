@@ -10,6 +10,7 @@ public class  BaseOutput<T>{
 	
 	private int page;
 	private int totalPage;
+	private String search;
 	private List<T> listResults = new ArrayList<>();
 	
 	public int getPage() {
@@ -31,6 +32,12 @@ public class  BaseOutput<T>{
 	public void setTotalPage(int totalPage) {
 		this.totalPage = totalPage;
 	}
-	
-	
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
 }

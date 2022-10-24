@@ -1,6 +1,4 @@
-package com.springboot.api;
-
-
+package com.springboot.api.admin;
 import com.springboot.dto.RoleDTO;
 import com.springboot.service.IRoleService;
 import com.springboot.utils.RoleToUserForm;
@@ -13,7 +11,7 @@ import java.util.Map;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/admin/api")
 public class RoleAPI {
 
     @Autowired
@@ -53,7 +51,7 @@ public class RoleAPI {
             tokens.put("status", "success");
         }
         catch(Exception err){
-            tokens.put("status", "fail");
+            tokens.put("error_message", "remove fail");
         }
 
         return tokens;
