@@ -15,6 +15,7 @@ public interface IUserService extends UserDetailsService {
 
     public List<UserDTO> findAll(Pageable pageable);
 
+    Long findOneByUsername(String username);
     public Boolean isExist (String username);
     int totalItem();
 }

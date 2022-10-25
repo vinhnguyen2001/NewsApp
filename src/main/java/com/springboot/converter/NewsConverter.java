@@ -35,6 +35,7 @@ public class NewsConverter {
 		dto.setCreatedDate(entity.getCreatedDate());
 		dto.setModifiedBy(entity.getModifiedBy());
 		dto.setModifiedDate(entity.getModifiedDate());
+		dto.setCategoryCode(entity.getCategory().getCode());
 		
 		return dto;
 	}

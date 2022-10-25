@@ -23,7 +23,7 @@ public abstract class BaseEntity {
 	// set 'id' attribute to primary key.
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // auto increment
-	private Long id;
+	protected Long id;
 	
 	@Column
 	@CreatedBy
@@ -44,6 +44,10 @@ public abstract class BaseEntity {
 	
 	public Long getId() {
 		return id;
+	}
+
+	public void setId(Long id) {
+
 	}
 
 	public String getCreatedBy() {

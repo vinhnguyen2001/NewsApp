@@ -40,21 +40,22 @@ public class UserService implements IUserService {
 
         UserEntity userEntity = new UserEntity();
 
+        // occur when user update info
         if (userDTO.getId() != null) {
-
             UserEntity oldUserEntity = userRepo.findOne(userDTO.getId());
             userEntity = userConverter.toEntity(userDTO, oldUserEntity);
-
         } else {
             userEntity = userConverter.toEntity(userDTO, userEntity);
         }
 
+        userEntity.setStatus(1);
         userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
-
         userEntity = userRepo.save(userEntity);
 
         try {
-          roleService.addRoleToUser(userEntity.getUserName(),"ROLE_USER");
+            // set ROLE_USER for account is user
+            roleService.addRoleToUser(userEntity.getUserName(),"ROLE_USER");
+
         } catch (Exception e) {
 
             throw new RuntimeException(e);
@@ -90,14 +91,16 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public Long findOneByUsername(String username) {
+        return userRepo.findUserEntityByUserName(username).getId();
+    }
+
+    @Override
     public Boolean isExist(String username) {
 
         UserEntity userEntity = userRepo.findUserEntityByUserName(username);
 
-        if(userEntity != null){
-            return  true;
-        }
-        return false;
+        return userEntity != null;
     }
 
     @Override

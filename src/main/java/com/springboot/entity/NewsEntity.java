@@ -16,7 +16,7 @@ public class NewsEntity extends BaseEntity {
 	
 	@Column(name="shortdescription")
 	private String shortDescription;
-	
+	@Lob
 	@Column(name="content")
 	private String content;
 

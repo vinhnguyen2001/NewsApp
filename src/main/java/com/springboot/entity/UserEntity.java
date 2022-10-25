@@ -31,6 +31,11 @@ public class UserEntity extends BaseEntity {
 		return comments;
 	}
 
+	@Override
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public void setComments(List<CommentEntity> comments) {
 		this.comments = comments;
 	}

@@ -14,10 +14,11 @@ public class UserConverter {
 
     public UserEntity toEntity(UserDTO dto, UserEntity entity) {
 
-        entity.setUserName(dto.getUsername());
+        if(dto.getUsername() != null){
+            entity.setUserName(dto.getUsername());
+        }
         entity.setFullName(dto.getFullName());
         entity.setPassword(dto.getPassword());
-        entity.setStatus(dto.getStatus());
 
         return entity;
     }

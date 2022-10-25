@@ -1,6 +1,7 @@
 
 package com.springboot.api.user;
 
+import com.springboot.security.SecurityConfig;
 import com.springboot.utils.ValidateParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -28,6 +29,7 @@ public class NewsAPI {
                               @RequestParam("sort") String sort,
                               @RequestParam("search") String search) throws Exception {
 
+
         try {
 
             BaseOutput result = new BaseOutput();
@@ -48,9 +50,8 @@ public class NewsAPI {
         }
     }
 
-    @GetMapping(value = "/new/{id}")
+    @GetMapping(value = "/news/detail/{id}")
     public NewsDTO getDetailNews(@PathVariable Long id) {
-
         return newsService.getNewsById(id);
     }
 

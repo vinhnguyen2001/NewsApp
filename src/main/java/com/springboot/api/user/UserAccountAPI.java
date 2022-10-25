@@ -3,6 +3,7 @@ package com.springboot.api.user;
 
 
 import com.springboot.dto.UserDTO;
+import com.springboot.security.SecurityConfig;
 import org.springframework.web.bind.annotation.*;
 import com.springboot.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,10 @@ public class UserAccountAPI {
     private IUserService userService;
 
 
+
     @PostMapping(value="/user")
     public Map<String,String> createUser(@RequestBody UserDTO model) {
+
 
         Map<String, String> tokens = new HashMap<>();
         try {
@@ -43,22 +46,20 @@ public class UserAccountAPI {
             return tokens;
         }
 
-
     }
 
-    @PutMapping(value="/user/{id}")
-    public Map<String,String>  updateUser(@RequestBody UserDTO model, @PathVariable("id") Long id) {
-
+    @PutMapping(value="/user")
+    public Map<String,String>  updateUser(@RequestBody UserDTO model) {
         Map<String, String> tokens = new HashMap<>();
         try {
 
-            if (!userService.isExist(model.getUsername())) {
-                model.setId(id);
+            if (SecurityConfig.getCurrentUsername().equals(model.getUsername())) {
+                model.setId(userService.findOneByUsername(model.getUsername()));
                 UserDTO userDTO = userService.save(model);
                 tokens.put("success_message","update account succeed");
             }
             else {
-                tokens.put("error_message","username is exist");
+                tokens.put("error_message","not permission");
             }
             return tokens;
         }
